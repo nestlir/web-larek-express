@@ -5,11 +5,15 @@ import UnauthorizedError from '../errors/unauthorized-error';
 const { JWT_SECRET = 'secret' } = process.env;
 
 interface Request extends ExpressRequest {
-  user?: { id: string }; // Изменено _id на id
+  user?: { id: string };
 }
 
 // eslint-disable-next-line consistent-return
 const authMiddleware = (req: Request, _res: Response, next: NextFunction) => {
+  if (!req.headers.authorization?.startsWith('Bearer ')) {
+    return next(new UnauthorizedError('Неверный формат заголовка авторизации'));
+  }
+
   const token = req.headers.authorization?.replace('Bearer ', '');
 
   if (!token) {
@@ -21,6 +25,7 @@ const authMiddleware = (req: Request, _res: Response, next: NextFunction) => {
     req.user = payload;
     next();
   } catch (err) {
+    console.error('Ошибка верификации токена:', err);
     next(new UnauthorizedError('Необходима авторизация'));
   }
 };

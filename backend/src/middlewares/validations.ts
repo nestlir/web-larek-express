@@ -1,5 +1,39 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 
+// Валидация для входа
+export const validateLogin = celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    email: Joi.string().email().required().messages({
+      'string.email': 'Неверный формат email',
+      'any.required': 'Поле "email" должно быть заполнено',
+    }),
+    password: Joi.string().min(6).required().messages({
+      'string.min': 'Минимальная длина поля "password" - 6 символов',
+      'any.required': 'Поле "password" должно быть заполнено',
+    }),
+  }),
+});
+
+// Валидация для регистрации
+export const validateRegister = celebrate({
+  [Segments.BODY]: Joi.object().keys({
+    email: Joi.string().email().required().messages({
+      'string.email': 'Неверный формат email',
+      'any.required': 'Поле "email" должно быть заполнено',
+    }),
+    password: Joi.string().min(6).required().messages({
+      'string.min': 'Минимальная длина поля "password" - 6 символов',
+      'any.required': 'Поле "password" должно быть заполнено',
+    }),
+    name: Joi.string().min(2).max(30).required()
+      .messages({
+        'string.min': 'Минимальная длина поля "name" - 2 символа',
+        'string.max': 'Максимальная длина поля "name" - 30 символов',
+        'any.required': 'Поле "name" должно быть заполнено',
+      }),
+  }),
+});
+
 // Валидация для создания продукта
 export const validateProductBody = celebrate({
   [Segments.BODY]: Joi.object().keys({
