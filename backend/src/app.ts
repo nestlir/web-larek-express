@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { errors } from 'celebrate';
 import rateLimit from 'express-rate-limit';
+import NotFoundError from './errors/not-found-error';
 import config from './config';
 import { requestLogger, errorLogger } from './middlewares/logger';
 import errorHandler from './middlewares/error-handler';
@@ -59,8 +60,8 @@ app.use(errorLogger);
 app.use(errors());
 
 // Обработка запросов на несуществующие маршруты
-app.use('*', (_req, res) => {
-  res.status(404).json({ message: 'Запрашиваемый ресурс не найден' });
+app.use('*', (_req, _res, next) => {
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
 });
 
 // Централизованная обработка ошибок
