@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import { Document } from 'mongoose';
-=======
 import mongoose, { Document } from 'mongoose';
->>>>>>> Stashed changes
 
 export interface IFile {
   fileName: string;
@@ -25,8 +21,6 @@ export interface OrderRequestBody {
   phone: string;
   address: string;
 }
-<<<<<<< Updated upstream
-=======
 
 export interface IUser extends Document {
   name: string;
@@ -44,4 +38,3 @@ export interface IOrder extends Document {
   items: mongoose.Types.ObjectId[];
   orderId: string;
 }
->>>>>>> Stashed changes
