@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import mongoose, { Schema, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,6 +11,11 @@ interface IOrder extends Document {
   items: mongoose.Types.ObjectId[];
   orderId: string;
 }
+=======
+import mongoose, { Schema } from 'mongoose';
+import { v4 as uuidv4 } from 'uuid';
+import { IOrder } from '../types/interface';
+>>>>>>> Stashed changes
 
 const orderSchema = new Schema<IOrder>(
   {

@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { Document } from 'mongoose';
+=======
+import mongoose, { Document } from 'mongoose';
+>>>>>>> Stashed changes
 
 export interface IFile {
   fileName: string;
@@ -21,3 +25,23 @@ export interface OrderRequestBody {
   phone: string;
   address: string;
 }
+<<<<<<< Updated upstream
+=======
+
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  tokens: { token: string }[];
+}
+
+export interface IOrder extends Document {
+  payment: 'card' | 'online';
+  email: string;
+  phone: string;
+  address: string;
+  total: number;
+  items: mongoose.Types.ObjectId[];
+  orderId: string;
+}
+>>>>>>> Stashed changes
