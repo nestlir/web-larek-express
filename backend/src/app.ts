@@ -11,7 +11,7 @@ import errorHandler from './middlewares/error-handler';
 import routes from './routes';
 
 // Подключение к MongoDB
-mongoose.connect(process.env.DB_ADDRESS!)
+mongoose.connect(config.dbAddress)
   .then(() => console.log('База данных подключена'))
   .catch((err) => console.error('Ошибка подключения к базе данных:', err));
 

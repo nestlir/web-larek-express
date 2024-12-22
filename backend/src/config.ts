@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 
+// Загружаем переменные окружения из .env
 dotenv.config();
 
 const config = {
